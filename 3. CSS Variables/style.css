@@ -1,0 +1,34 @@
+:root{
+    --spacing: 10px;
+    --blur: 0px;
+    --base: black;
+}
+body{
+    background-color: #193549;
+    text-align: center;
+    color: white;
+}
+.head{
+    font-size: 75px;
+    padding: 25px;
+    font-weight: 650;
+    margin-top: 40px;
+    text-decoration: underline;
+}
+.feature{
+    font-size: 45px;
+    padding: 50px;
+}
+.inputs{
+    width: 100px;
+}
+img{
+    background-color: var(--base);
+    margin: auto;
+    padding: var(--spacing);
+    filter: blur(var(--blur));
+}
+span{
+    color: var(--base);
+    transform: rotate(var(--spacing));
+}
