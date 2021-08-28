@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Clock</title>
+    <style>
+        body{
+            background: url(./background.jpg);
+        }
+        .clock{
+            width: 250px;
+            height: 250px;
+            border: solid rgba(13, 13, 14, 0.76) 20px;
+            border-radius: 50%;
+            margin: 150px auto;
+            position: relative;
+            box-shadow: 10px 10px 50px 5px rgba(0, 4, 5, 0.849) inset;
+        }
+        .second-hand{
+            height: 0.1px;
+            width: 115px;
+            border: solid rgba(172, 8, 8, 0.795) 2px;
+            position:absolute;
+            top: 125px;
+            left: 5px;
+            transform-origin: 100%;
+            transform: rotate(90deg);
+            transition: all 0.1s cubic-bezier(0, 2.64, 0.5, -1.48);
+        }
+        .minute-hand{
+            height: 0.1px;
+            width: 105px;
+            border: solid rgba(60, 196, 67, 0.801) 2px;
+            position:absolute;
+            top: 125px;
+            left: 15px;
+            transform-origin: 100%;
+            transform: rotate(90deg);
+        }
+        .hour-hand{
+            height: 0.1px;
+            width: 80px;
+            border: solid rgb(235, 194, 82) 2px;
+            position:absolute;
+            left: 40px;
+            top: 125px;
+            transform-origin: 100%;
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <div class="second-hand"></div>
+        <div class="minute-hand"></div>
+        <div class="hour-hand"></div>
+    </div>
+    <script>
+        function run(){
+            const now=new Date();
+            let s=now.getSeconds();
+            let m=now.getMinutes();
+            let h=now.getHours();
+            h=h%12;
+            if(s==0){
+                document.querySelector('.second-hand').style.transition='all 0s';
+                setInterval(()=>document.querySelector('.second-hand').style.transition='all 0.1s cubic-bezier(0, 2.64, 0.5, -1.48)',500);
+            }
+            if(m==0){
+                document.querySelector('.minute-hand').style.transition='all 0s';
+                setInterval(()=>document.querySelector('.minute-hand').style.transition='all 0.1s cubic-bezier(0, 2.64, 0.5, -1.48)',500);
+            }
+            if(h==0){
+                document.querySelector('.hour-hand').style.transition='all 0s';
+                setInterval(()=>document.querySelector('.hour-hand').style.transition='all 0.1s cubic-bezier(0, 2.64, 0.5, -1.48)',500);
+            }
+            document.querySelector('.second-hand').style.transform=`rotate(${s*6+90}deg`;
+            document.querySelector('.minute-hand').style.transform=`rotate(${m*6+s*0.1+90}deg`;
+            document.querySelector('.hour-hand').style.transform=`rotate(${h*30+m*0.5+s*0.0833+90}deg`;
+        }
+        setInterval(run,1000);
+        run();
+    </script>
+</body>
+</html>
